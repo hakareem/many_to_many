@@ -7,6 +7,8 @@ INSERT INTO tags (name) VALUES ('First Tag');
 INSERT INTO posts_tags (post_id, tag_id) VALUES (1, 1);
 
 
+
+
 INSERT INTO posts (title) VALUES ('Second Post');
 
 INSERT INTO tags (name) VALUES ('Second Tag');
