@@ -15,14 +15,14 @@ end
  it "returns list of posts" do
   repo = PostRepository.new
   posts = repo.all
-  expect(posts.length).to eq 2 
-  expect(posts.first.title).to eq "Sky Garden" 
+  expect(posts.length).to eq 2
+  expect(posts.first.title).to eq "First Post" 
  end
 
  it "returns a single post" do
   repo = PostRepository.new
   post = repo.find(1)
-  expect(post.title).to eq "Sky Garden" 
+  expect(post.title).to eq "First Post" 
  end
 
  it "creates a new post record" do
@@ -40,9 +40,14 @@ end
 
  it "deletes an post from the list" do
    repo = PostRepository.new
-   the_post = repo.find(1)
+   post = repo.find(1)
+  #  p post.id
+  #  exit
+   repo.delete(post.id)
+   tag = Tag.new
+   p tag.id
+   repo.delete(tag.id)
 
-   repo.delete(the_post.post_id)
 
    all_posts = repo.all
    expect(all_posts.length).to eq(2) 
@@ -53,12 +58,14 @@ end
 
    post = repo.find(1)
 
-   post.title = "May"
+   post.title = "New Post"
+   post.id = "1"
 
    repo.update(post)
    new_post = repo.find(1)
 
-   expect(new_post.title).to eq("Sky Garden")  
+   expect(new_post.title).to eq("New Post")  
+   expect(new_post.id).to eq("1")  
  end
 
  it "retrievs all tags for a given post" do
@@ -66,6 +73,6 @@ end
     post = repository.find_by_tag(2)
 
     expect(post.tags.length).to eq(1)
-    expect(post.title).to eq('Sky Garden')
+    expect(post.title).to eq('Second Post')
  end
 end
